@@ -33,7 +33,7 @@ Value of boolean expression can be used to select one of two values. In this exa
 
 ## Upgrade to recent provider version to make use of new features
 Specify instance requirements in auto scaling group using vcpu/memory instead of specific instance type. This specification is part of a new provider version and earlier versions supported just the instance type. Benefits of specifying vcpu/memory instead of instance type is that AWS will select an appropriate newer generation instance type based on the resource requirements and will have better price performance.  
-Make use of instance distribution to create a balance of on-demand and spot instances. Here for a total auto scaling group size of 8 nodes, 2 nodes will be on-demand and the rest will be spot. Spot instances provide upto 70% cost savings but with a caveat of instance getting terminated with a 2 minute warning and can be used for fault-tolerant workloads. 
+Make use of instance distribution to create a balance of on-demand and spot instances. Here for a total auto scaling group size of 8 nodes, 2 nodes will be on-demand and the rest will be spot. Spot instances provide upto 70% cost savings but with a caveat of instance getting terminated with a 2 minute warning and can be used for fault-tolerant workloads.  
 [auto-scaling-group.tf](auto-scaling-group.tf)
 
 ## Requirements

@@ -1,0 +1,62 @@
+{
+    "region": "us-east-1",
+    "deploy_env": "dev",
+    "efs_ia_transition": "AFTER_30_DAYS",
+    "auto_scaling_group": {
+      "max_size": 8,
+      "min_size": 0,
+      "vcpu_min": 2,
+      "vcpu_max": 2,
+      "memory_min": 4096,
+      "memory_max": 4096,
+      "od_base_capacity": 2,
+      "od_percent_on_top": 0,
+      "spot_strategy": "lowest-price",
+      "ami_name": "/aws/service/bottlerocket/aws-ecs-1/x86_64/latest/image_id",
+      "instance_lifetime": 86400
+    },
+    "lifecycle_rules": {
+      "status": "Enabled",
+      "minimum_object_size": 131072,
+      "noncurrent_expire_days": 7,
+      "expiration_days": 180,
+      "transition": [
+        {
+          "days": 30,
+          "storage_class": "GLACIER"
+        },
+        {
+          "days": 120,
+          "storage_class": "DEEP_ARCHIVE"
+        }
+      ]
+    },
+    "lifecycle_prefix_rules": {
+      "year-2022": {
+        "enabled": true,
+        "transition": [
+          {
+            "days": 30,
+            "storage_class": "GLACIER"
+          },
+          {
+            "days": 120,
+            "storage_class": "DEEP_ARCHIVE"
+          }
+        ]
+      },
+      "year-2023": {
+        "enabled": true,
+        "transition": [
+          {
+            "days": 60,
+            "storage_class": "GLACIER"
+          },
+          {
+            "days": 180,
+            "storage_class": "DEEP_ARCHIVE"
+          }
+        ]
+      }
+    }
+  }
